@@ -7,11 +7,13 @@ import {
   updateScore,
   makeidle,
   revealCard,
+  setGameState,
 } from "../store/gameSlice";
 import Card from "./Card";
 import GameStatus from "./GameStatus";
 import { motion } from "framer-motion";
-// import { saveGameState } from "../api/user";
+import { saveGameState } from "../api/user";
+import { API_BASE_URL } from "../api/global";
 
 export default function Game() {
   const dispatch = useDispatch();
@@ -35,21 +37,53 @@ export default function Game() {
     isGameOver
   );
 
-  // useEffect(() => {
-  //   if (gameStatus !== "idle") {
-  //     // Add other necessary checks here
-  //     const gameState = {
-  //       username,
-  //       deck,
-  //       hasDefuseCard,
-  //       gameStatus,
-  //       message,
-  //       score,
-  //       isGameOver,
-  //     };
-  //     saveGameState(gameState);
-  //   }
-  // }, [deck, hasDefuseCard, gameStatus, message, score, username, isGameOver]);
+  useEffect(() => {
+    const loadGameState = async (username) => {
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}/game/load?username=${username}`
+        );
+        console.log(response);
+        if (response.ok) {
+          const gameState = await response.json();
+          dispatch(setGameState(gameState));
+        } else {
+          const gameState = {
+            username,
+            deck: [],
+            hasDefuseCard: false,
+            gameStatus: "idle",
+            message: "Welcome to Exploding Kittens!",
+            score: 0,
+            isGameOver: false,
+          };
+          await saveGameState(gameState);
+          dispatch(setGameState(gameState));
+        }
+      } catch (error) {
+        console.error("Error loading game state:", error);
+      }
+    };
+
+    const load = async () => {
+      await loadGameState(username);
+    };
+    load();
+  }, []);
+
+  useEffect(() => {
+    // Add other necessary checks here
+    const gameState = {
+      username,
+      deck,
+      hasDefuseCard,
+      gameStatus,
+      message,
+      score,
+      isGameOver,
+    };
+    saveGameState(gameState);
+  }, [deck, hasDefuseCard, gameStatus, message, score, username, isGameOver]);
 
   useEffect(() => {
     if (gameStatus === "won") {
@@ -116,10 +150,7 @@ export default function Game() {
       <div className="flex justify-center flex-wrap gap-4">
         {gameStatus === "playing" &&
           deck.slice(0, 5).map((card, index) => (
-            <div
-              key={card.id}
-              className="flex justify-center"
-            >
+            <div key={card.id} className="flex justify-center">
               <Card
                 type={card.revealed ? card.type : null}
                 isBack={!card.revealed}

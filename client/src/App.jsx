@@ -6,34 +6,27 @@ import Game from "./components/Game";
 import Leaderboard from "./components/Leaderboard";
 import { logout } from "./store/gameSlice";
 // import { setGameState } from "./store/gameSlice";
-import { saveGameState } from "./api/user";
+// import { saveGameState } from "./api/user";
 
 function App() {
   const {
     isLoggedIn: loggedIn,
-    username,
-    deck,
-    hasDefuseCard,
-    gameStatus,
-    message,
-    score,
-    isGameOver,
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    const gameState = {
-      username,
-      deck,
-      hasDefuseCard,
-      gameStatus,
-      message,
-      score,
-      isGameOver,
-    };
-    const save = async () => {
-      await saveGameState(gameState);
-    };
-    save();
+    // const gameState = {
+    //   username,
+    //   deck,
+    //   hasDefuseCard,
+    //   gameStatus,
+    //   message,
+    //   score,
+    //   isGameOver,
+    // };
+    // const save = async () => {
+    //   await saveGameState(gameState);
+    // };
+    // save();
     dispatch(logout()); // Dispatch the logout action
   };
 
