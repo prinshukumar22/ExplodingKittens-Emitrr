@@ -32,7 +32,7 @@ type User struct {
 }
 
 var rdb = redis.NewClient(&redis.Options{
-	Addr: "autorack.proxy.rlwy.net:33427", //os.Getenv("autorack.proxy.rlwy.net:33427"), //"localhost:6379",
+	Addr: "rediss://red-csidskij1k6c73areuh0:SzexQvukFpNP9p7P6qrilsyEbITOh42p@oregon-redis.render.com:6379", //os.Getenv("autorack.proxy.rlwy.net:33427"), //"localhost:6379",
 	DB:   0,
 })
 
