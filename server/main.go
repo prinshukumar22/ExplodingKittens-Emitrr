@@ -33,7 +33,7 @@ type User struct {
 }
 
 var rdb = redis.NewClient(&redis.Options{
-	Addr: os.Getenv("REDIS_HOST") + ":" + os.Getenv("REDIS_PORT"), //"localhost:6379",
+	Addr: os.Getenv("REDIS_URL"), //"localhost:6379",
 	DB:   0,
 })
 
