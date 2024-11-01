@@ -11,6 +11,7 @@ const createCard = (type) => ({
 
 const createDeck = () => {
   const cards = [];
+  const cards2 = [];
   // Add one of each card type
   cards.push(createCard("cat"));
   cards.push(createCard("defuse"));
@@ -18,8 +19,18 @@ const createDeck = () => {
   cards.push(createCard("bomb"));
   // Add an extra cat card
   cards.push(createCard("cat"));
+
+  cards2.push(createCard("cat"));
+  cards2.push(createCard("defuse"));
+  cards2.push(createCard("cat"));
+  cards2.push(createCard("bomb"));
+  // Add an extra cat card
+  cards2.push(createCard("cat"));
   // Shuffle the deck
-  return cards.sort(() => Math.random() - 0.5);
+  const comCard = [[...cards], [...cards2], [...cards2], [...cards2]];
+  comCard.forEach((card) => card.sort(() => Math.random() - 0.5));
+  const inx = Math.floor(Math.random() * 4);
+  return comCard[inx];
 };
 
 export const updateScore = createAsyncThunk(
@@ -132,6 +143,6 @@ export const {
   logout,
   makeidle,
   setGameState,
-  revealCard
+  revealCard,
 } = gameSlice.actions;
 export default gameSlice.reducer;
