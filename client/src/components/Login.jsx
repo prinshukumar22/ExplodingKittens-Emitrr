@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { login, setGameState } from "../store/gameSlice";
 import { saveGameState } from "../api/user";
-// import { registerUser } from "../api/user";
+import { API_BASE_URL } from "../api/global";
+// import { registerUser } from "../api/user";s
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -13,7 +14,9 @@ export default function Login() {
 
   const loadGameState = async (username) => {
     try {
-      const response = await fetch(`/api/game/load?username=${username}`);
+      const response = await fetch(
+        `${API_BASE_URL}/game/load?username=${username}`
+      );
       console.log(response);
       if (response.ok) {
         const gameState = await response.json();

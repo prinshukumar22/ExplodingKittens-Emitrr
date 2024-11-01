@@ -1,6 +1,7 @@
+import { API_BASE_URL } from "./global";
 export const registerUser = async (username) => {
   try {
-    const response = await fetch("/api/user", {
+    const response = await fetch(`${API_BASE_URL}/user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username }),
@@ -16,7 +17,7 @@ export const registerUser = async (username) => {
 
 export const saveGameState = async (gameState) => {
   console.log(gameState);
-  await fetch("/api/game/save", {
+  await fetch(`${API_BASE_URL}/game/save`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(gameState),
