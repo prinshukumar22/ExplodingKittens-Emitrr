@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"sort"
 
 	"github.com/go-redis/redis/v8"
@@ -13,7 +14,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var ctx = context.Background()
+var (
+	ctx = context.Background()
+	rdb *redis.Client // Declare the Redis client as a global variable
+)
 
 type Card struct {
 	ID       string `json:"id"`
@@ -31,12 +35,21 @@ type User struct {
 	Deck          []Card `json:"deck"`
 }
 
-var rdb = redis.NewClient(&redis.Options{
-	Addr: "rediss://red-csidskij1k6c73areuh0:SzexQvukFpNP9p7P6qrilsyEbITOh42p@oregon-redis.render.com:6379", //os.Getenv("autorack.proxy.rlwy.net:33427"), //"localhost:6379",
-	DB:   0,
-})
+// var rdb = redis.NewClient(&redis.Options{
+// 	Addr: "localhost:6379", //os.Getenv("autorack.proxy.rlwy.net:33427"), //"localhost:6379",
+// 	DB:   0,
+// })
 
 func main() {
+
+	redisURL := os.Getenv("REDIS_URL")
+	opt, err := redis.ParseURL(redisURL)
+	if err != nil {
+		panic(err)
+	}
+
+	rdb = redis.NewClient(opt)
+
 	router := mux.NewRouter()
 
 	// Define routes
