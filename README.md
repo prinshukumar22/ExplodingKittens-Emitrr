@@ -76,7 +76,12 @@ The application also includes features like a leaderboard to track players' scor
     ```bash
     go mod tidy
 
-3. Use your Redis connection string to setup your Redis database.
+3. Use your Redis connection URL to set up your Redis database.
+   REDIS_URL: Redis connection URL, such as redis://localhost:6379/0
+
+5. Ensure Redis is running. If you're using Docker, you can start Redis with:
+   ```bash
+    docker run --name redis -p 6379:6379 -d redis
 
 ### Running the Backend
 1. Start the Backend Server:
