@@ -68,7 +68,7 @@ The application also includes features like a leaderboard to track players' scor
 
 ### Installation
 
-1. Navigate to the backend directory:
+1. Navigate to the backend directory from the root directory:
    ```bash
    cd ExplodingKittens-Emitrr/server
 
@@ -76,12 +76,12 @@ The application also includes features like a leaderboard to track players' scor
     ```bash
     go mod tidy
 
-3. Use your Redis connection-string
+3. Use your Redis connection string to setup your Redis database.
 
 ### Running the Backend
 1. Start the Backend Server:
     ```bash
     go run main.go
 
-2. The server will run on http://localhost:8080.
+2. The server will run on http://localhost:8080
 
