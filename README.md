@@ -50,7 +50,7 @@ The application also includes features like a leaderboard to track players' scor
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/prinshukumar22/ExplodingKittens-Emitrr.git](https://github.com/prinshukumar22/ExplodingKittens-Emitrr.git)
+   git clone https://github.com/prinshukumar22/ExplodingKittens-Emitrr.git
    cd ExplodingKittens-Emitrr/client
 
 2. Install Dependencies
