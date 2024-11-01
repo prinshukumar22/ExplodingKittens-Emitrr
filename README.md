@@ -23,7 +23,7 @@
 - **Shuffle Card**: Shuffles the deck and resets the game.
 - **Exploding Kitten**: Ends the game if drawn unless the player has a defuse card.
 
-The application also includes features like a leaderboard to track players' scores, real-time updates, and game persistence to allow users to continue from where they left off.
+The application also includes features like a leaderboard to track players' scores, and game persistence to allow users to continue from where they left off.
 
 ## Features
 
