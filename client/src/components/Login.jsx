@@ -47,8 +47,8 @@ export default function Login() {
         setIsLoading(true);
         // await registerUser(username.trim());
         setIsLoading(false);
-        await loadGameState(username.trim());
-        dispatch(login(username.trim()));
+        await loadGameState(username.trim().toLowerCase());
+        dispatch(login(username.trim().toLowerCase()));
       } catch (error) {
         console.error("Error during registration:", error);
         setError(error.message);
