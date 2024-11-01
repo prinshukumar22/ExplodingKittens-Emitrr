@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"sort"
 
 	"github.com/go-redis/redis/v8"
@@ -33,7 +32,7 @@ type User struct {
 }
 
 var rdb = redis.NewClient(&redis.Options{
-	Addr: os.Getenv("autorack.proxy.rlwy.net:33427"), //"localhost:6379",
+	Addr: "autorack.proxy.rlwy.net:33427", //os.Getenv("autorack.proxy.rlwy.net:33427"), //"localhost:6379",
 	DB:   0,
 })
 
