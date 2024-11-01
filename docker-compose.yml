@@ -4,7 +4,7 @@ services:
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile.client
+      dockerfile: Dockerfile
     ports:
       - "5173:80"  # Map Nginx's port 80 to local port 5173 (not 3000)
     depends_on:
@@ -15,7 +15,7 @@ services:
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile.server  # Assuming your backend Dockerfile is named 'Dockerfile'
+      dockerfile: Dockerfile  # Assuming your backend Dockerfile is named 'Dockerfile'
     ports:
       - "8080:8080"  # Expose backend on port 8080
     environment:
