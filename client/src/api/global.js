@@ -1,2 +1,2 @@
 export const API_BASE_URL =
-  "http://localhost:8080";
+  "https://explodingkittens-emitrr-production.up.railway.app";
